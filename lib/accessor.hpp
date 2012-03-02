@@ -1,8 +1,6 @@
 #ifndef __ACCESSOR_HPP__
 #define __ACCESSOR_HPP__
 
-#include <functional>
-
 namespace lindapp{
 
     enum struct access{ getter = 0, setter };
@@ -14,6 +12,7 @@ namespace lindapp{
         accessor_base() = default;
         accessor_base(T const& t) : value(t){};
         accessor_base(T && t) : value(t){};
+        virtual ~accessor_base(){};
     };
 
     template< class T, access... Access >
