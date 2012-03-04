@@ -40,6 +40,16 @@ namespace lindapp {
     {
         return Result{{ std::forward<First>(f), std::forward<Rest>(rest)... }};
     }
+
+    template <class T, size_t N, class Result = std::array<T, N>>
+    Result to_array( T const(& native_array)[N] )
+    {
+        Result ret;
+        for(size_t i = 0; i < N; ++i){
+            ret[i] = native_array[i];
+        }
+        return std::move( ret );
+    }
 }
 
 #endif // __LINDAPP_MAKE_ARRAY_HPP__
