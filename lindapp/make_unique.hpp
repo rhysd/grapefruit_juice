@@ -1,6 +1,8 @@
 #ifndef __LINDA_PP_MAKE_UNIQUE_HPP__
 #define __LINDA_PP_MAKE_UNIQUE_HPP__
 
+// std::unique_ptr を生成
+
 #include <memory>
 
 namespace lindapp {

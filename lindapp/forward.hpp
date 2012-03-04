@@ -1,6 +1,9 @@
 #ifndef __LINDAPP_FORWARD_HPP__
 #define __LINDAPP_FORWARD_HPP__
 
+// std::forward の2つめのシグネチャを delete したバージョン
+// 間違ったキャストが起きないように．
+
 namespace lindapp{
 
     template <class T>

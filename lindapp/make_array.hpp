@@ -1,6 +1,10 @@
 #ifndef __LINDAPP_MAKE_ARRAY_HPP__
 #define __LINDAPP_MAKE_ARRAY_HPP__
 
+// make_array:  引数を要素に取る std::array を生成
+// make_array2: 型を最初の要素から推測するver
+// to_array:    生配列から std::array を生成
+
 #include <array>
 #include <type_traits>
 
