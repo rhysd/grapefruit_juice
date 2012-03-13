@@ -1,5 +1,5 @@
-#ifndef __LINDAPP_MAKE_ARRAY_HPP__
-#define __LINDAPP_MAKE_ARRAY_HPP__
+#ifndef LINDAPP_MAKE_ARRAY_HPP__
+#define LINDAPP_MAKE_ARRAY_HPP__
 
 // make_array:  引数を要素に取る std::array を生成
 // make_array2: 型を最初の要素から推測するver
@@ -104,6 +104,7 @@ namespace lindapp {
                                          a2, typename detail::index_range<0, N2>::type() );
     }
 
+    /* 引数解決ができずコンパイルエラー．
     namespace detail{
         template< class T, std::size_t N, std::size_t Sep,
                   std::size_t... Indices1, std::size_t... Indices2 >
@@ -118,11 +119,11 @@ namespace lindapp {
     template< std::size_t Sep, class T, std::size_t N >
     constexpr std::pair< std::array<T, Sep>, std::array<T, N-Sep> > split_array( std::array<T, N> const& a )
     {
-        static_assert( 0<Sep&&Sep<=N, "split_array: separater is out of bounds.");
         return detail::split_array_impl( a, typename detail::index_range<0, Sep>::type(),
                                             typename detail::index_range<Sep, N>::type() );
     }
+    */
 
 } // namespace lindapp
 
-#endif // __LINDAPP_MAKE_ARRAY_HPP__
+#endif // LINDAPP_MAKE_ARRAY_HPP__
