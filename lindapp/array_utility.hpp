@@ -47,21 +47,23 @@ namespace lindapp {
         return Result{{ std::forward<First>(f), std::forward<Rest>(rest)... }};
     }
 
-    template <class T, std::size_t N, class Result = std::array<T, N>>
-    Result to_array( T const(& native_array)[N] )
+    template <class T, std::size_t N, std::size_t... Indices>
+    constexpr std::array<T, N> to_array_impl( T const(& native_array)[N], index_tuple<Indices...>)
     {
-        Result ret;
-        for(std::size_t i = 0; i < N; ++i){
-            ret[i] = native_array[i];
-        }
-        return std::move( ret );
+        return {{ native_array[Indices]... }};
+    }
+
+    template <class T, std::size_t N>
+    constexpr std::array<T, N> to_array( T const(& native_array)[N])
+    {
+        return to_array_impl( native_array, typename index_range<0, N>::type() );
     }
 
     namespace detail{
 
         // operator[] や data() は constexpr 化されていないので苦肉の策．
         // constexpr に対応次第消す
-        template< class T, std::size_t N>
+        template< class T, std::size_t N >
         constexpr T const& at(std::array<T, N> const& arr, std::size_t pos)
         {
             return arr._M_instance[pos];
