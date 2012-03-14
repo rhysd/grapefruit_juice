@@ -1,5 +1,5 @@
-#ifndef LINDAPP_MAKE_ARRAY_HPP__
-#define LINDAPP_MAKE_ARRAY_HPP__
+#ifndef LINDAPP_ARRAY_UTILITY_HPP__
+#define LINDAPP_ARRAY_UTILITY_HPP__
 
 // make_array:  引数を要素に取る std::array を生成
 // make_array2: 型を最初の要素から推測するver
@@ -8,6 +8,7 @@
 
 #include <array>
 #include <type_traits>
+#include "index_tuple.hpp"
 
 namespace lindapp {
 
@@ -66,24 +67,6 @@ namespace lindapp {
             return arr._M_instance[pos];
         }
 
-        template< std::size_t... Indices >
-        struct index_tuple{};
-
-        template < std::size_t Start,
-                   std::size_t Last,
-                   class Acc = index_tuple<>,
-                   bool Finish = (Start>=Last) >
-        struct index_range{
-            typedef Acc type;
-        };
-
-        template < std::size_t Start,
-                   std::size_t Last,
-                   std::size_t... Indices >
-        struct index_range< Start, Last, index_tuple<Indices...>, false >
-                : index_range<Start+1, Last, index_tuple<Indices..., Start>>
-        {};
-
         template< class T,
                   std::size_t N1, std::size_t... Indices1,
                   std::size_t N2, std::size_t... Indices2
@@ -100,8 +83,8 @@ namespace lindapp {
     constexpr std::array<T, N1+N2> joint_array( std::array<T, N1> const& a1,
                                                 std::array<T, N2> const& a2 )
     {
-        return detail::joint_array_impl( a1, typename detail::index_range<0, N1>::type(),
-                                         a2, typename detail::index_range<0, N2>::type() );
+        return detail::joint_array_impl( a1, typename index_range<0, N1>::type(),
+                                         a2, typename index_range<0, N2>::type() );
     }
 
     /* 引数解決ができずコンパイルエラー．
@@ -119,11 +102,11 @@ namespace lindapp {
     template< std::size_t Sep, class T, std::size_t N >
     constexpr std::pair< std::array<T, Sep>, std::array<T, N-Sep> > split_array( std::array<T, N> const& a )
     {
-        return detail::split_array_impl( a, typename detail::index_range<0, Sep>::type(),
-                                            typename detail::index_range<Sep, N>::type() );
+        return detail::split_array_impl( a, typename index_range<0, Sep>::type(),
+                                            typename index_range<Sep, N>::type() );
     }
     */
 
 } // namespace lindapp
 
-#endif // LINDAPP_MAKE_ARRAY_HPP__
+#endif // LINDAPP_ARRAY_UTILITY_HPP__
