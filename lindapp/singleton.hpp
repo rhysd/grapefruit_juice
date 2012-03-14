@@ -5,7 +5,8 @@
 // 型Tに対して，singleton<T> はプログラム中に1つしかないことを保証する．
 // singleton<T>::get() でアクセス
 //
-// TODO: マルチスレッド安全性
+// GCC ではローカルな static 変数へのアクセスは排他制御されるのでマルチスレッドにおける安全性を担保
+// http://d.hatena.ne.jp/yohhoy/20120309
 
 namespace lindapp {
 
