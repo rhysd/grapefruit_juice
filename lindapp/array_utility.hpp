@@ -47,16 +47,18 @@ namespace lindapp {
         return Result{{ std::forward<First>(f), std::forward<Rest>(rest)... }};
     }
 
-    template <class T, std::size_t N, std::size_t... Indices>
-    constexpr std::array<T, N> to_array_impl( T const(& native_array)[N], index_tuple<Indices...>)
-    {
-        return {{ native_array[Indices]... }};
+    namespace detail{
+        template <class T, std::size_t N, std::size_t... Indices>
+        constexpr std::array<T, N> to_array_impl( T const(& native_array)[N], index_tuple<Indices...>)
+        {
+            return {{ native_array[Indices]... }};
+        }
     }
 
     template <class T, std::size_t N>
     constexpr std::array<T, N> to_array( T const(& native_array)[N])
     {
-        return to_array_impl( native_array, typename index_range<0, N>::type() );
+        return detail::to_array_impl( native_array, typename index_range<0, N>::type() );
     }
 
     namespace detail{
