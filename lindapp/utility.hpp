@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <cstddef>
+#include <iostream>
 
 namespace lindapp{
 
@@ -46,6 +47,21 @@ T min_many( T const& head, Rest... rest)
     return std::min( head, min_many( rest... ) );
 }
 
+template< class Container >
+void print_cs( Container const& container )
+{
+    for(auto const& i : container){
+        std::cout << i << ',';
+    }
+    std::cout << std::endl;
 }
 
+template < class Container, class... Containers >
+void print_cs( Container const& head, Containers const& ... rest)
+{
+    print_cs( head );
+    print_cs( rest... );
+}
+
+}
 #endif // LINDAPP_UTILITY_HPP__
