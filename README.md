@@ -1,6 +1,7 @@
 #DESCRIPTION
 
 My tiny cpp files to use generally.
+This requires the latest gcc.
 
 #LICENSE
 
