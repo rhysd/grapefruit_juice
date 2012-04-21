@@ -5,6 +5,7 @@
 #include <cstddef>
 #include <iostream>
 #include <type_traits>
+#include <functional>
 
 namespace lindapp{
 
@@ -62,6 +63,20 @@ void print_cs( Container const& head, Containers const& ... rest)
 {
     print_cs( head );
     print_cs( rest... );
+}
+
+template< class Iterator,
+          class Comp = std::less<typename Iterator::value_type>,
+          class Pred = std::equal_to<typename Iterator::value_type>
+        >
+inline Iterator unique( Iterator first,
+                 Iterator last,
+                 Comp comp=std::less<typename Iterator::value_type>(),
+                 Pred pred=std::equal_to<typename Iterator::value_type>()
+               )
+{
+    std::sort(first, last, comp);
+    return std::unique(first, last, pred);
 }
 
 }
