@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <cstddef>
 #include <iostream>
+#include <type_traits>
 
 namespace lindapp{
 
@@ -51,7 +52,7 @@ template< class Container >
 void print_cs( Container const& container )
 {
     for(auto const& i : container){
-        std::cout << i << ',';
+        std::cout << i << ' ';
     }
     std::cout << std::endl;
 }
