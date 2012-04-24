@@ -79,5 +79,34 @@ inline Iterator unique( Iterator first,
     return std::unique(first, last, pred);
 }
 
+namespace impl{
+    template< class Func, class Iter1, class Iter2 >
+    auto zip_with_elem(Func const& func, std::size_t offset, Iter1 iter1, Iter2 iter2)->decltype(func(*(iter1+offset), *(iter2+offset)))
+    // typename Iter1::value_type zip_with_elem(Func const& func, std::size_t offset, Iter1 iter1, Iter2 iter2)
+    {
+        return func( *(iter1+offset), *(iter2+offset) );
+    }
+
+    template< class Func, class Iter, class... Iters >
+    // typename std::result_of<Func>::type zip_with_elem(Func const& func, std::size_t offset, Iter head, Iters... rest)
+    auto zip_with_elem(Func const& func, std::size_t offset, Iter head, Iters... rest)->decltype(func( *(head+offset), zip_with_elem(func, offset, rest... )))
+    {
+        return func( *(head+offset), zip_with_elem(func, offset, rest... ));
+    }
+}
+
+template< class Func, class ResultIter, class FromIter, class... Iters >
+ResultIter zip_with( Func const& func, ResultIter result, FromIter frombegin, FromIter fromend, Iters... rest_iters)
+{
+    std::size_t offset = 0;
+    for( auto from = frombegin;
+         from!=fromend;
+         ++from, ++offset ){
+        *(result+offset) = impl::zip_with_elem( func, offset, frombegin, rest_iters... );
+    }
+
+    return result;
+}
+
 }
 #endif // LINDAPP_UTILITY_HPP__
