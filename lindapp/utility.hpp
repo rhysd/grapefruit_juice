@@ -80,10 +80,10 @@ inline Iterator unique( Iterator first,
 }
 
 template< class Func, class OutputIter, class InputIter, class... InputIters >
-OutputIter zip_with( Func const& func, OutputIter result, InputIter frombegin, InputIter fromend, InputIters... rest_iters)
+OutputIter zip_with( Func const& func, OutputIter result, InputIter from_begin, InputIter from_end, InputIters... rest_iters)
 {
-    for( auto from = frombegin;
-         from!=fromend;
+    for( auto from = from_begin;
+         from!=from_end;
          ++from ){
         typename OutputIter::value_type ret = *from;
         for( auto &iter_ptr : {(&rest_iters)...} ){
