@@ -96,5 +96,20 @@ OutputIter zip_with( Func const& func, OutputIter result, InputIter frombegin, I
     return result;
 }
 
+template< class Func, class OutputIter, class InputIter, class... InputIters >
+OutputIter zip_with2( Func const& func, OutputIter result, InputIter from_begin, InputIter from_end, InputIters... rest_iters )
+{
+    for( auto from = from_begin;
+         from!=from_end;
+         ++from ){
+        *result = func( *from, (*rest_iters)... );
+        for( auto &iter_ptr : {(&rest_iters)...} ){
+            ++(*iter_ptr);
+        }
+        ++result;
+    }
+    return result;
+}
+
 }
 #endif // LINDAPP_UTILITY_HPP__
