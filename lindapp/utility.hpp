@@ -103,8 +103,10 @@ OutputIter zip_with2( Func const& func, OutputIter result, InputIter from_begin,
          from!=from_end;
          ++from ){
         *result = func( *from, (*rest_iters)... );
-        for( auto &iter_ptr : {(&rest_iters)...} ){
-            ++(*iter_ptr);
+        // apply ++ operator to all elements of expansion pack
+        {
+            auto dummy = {(++rest_iters)...};
+            (void)dummy; // to avoid warning
         }
         ++result;
     }
