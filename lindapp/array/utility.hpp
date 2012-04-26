@@ -8,12 +8,12 @@
 
 #include <array>
 #include <type_traits>
-#include "index_tuple.hpp"
+#include "../index_tuple.hpp"
 
 namespace lindapp {
 
     // make_array: element type is common type of args
-    template <class T>
+    template <class T, class Array>
     inline std::array<T, 0> make_array()
     {
         return std::array<T, 0>{{}};

@@ -87,8 +87,7 @@ OutputIter zip_with( Func const& func, OutputIter result, InputIter from_begin, 
          ++from ){
         typename OutputIter::value_type ret = *from;
         for( auto &iter_ptr : {(&rest_iters)...} ){
-            ret = func( ret, *(*iter_ptr) );
-            ++(*iter_ptr);
+            ret = func( ret, *(*iter_ptr)++ );
         }
         *result = ret;
         ++result;
@@ -97,20 +96,15 @@ OutputIter zip_with( Func const& func, OutputIter result, InputIter from_begin, 
 }
 
 template< class Func, class OutputIter, class InputIter, class... InputIters >
-OutputIter zip_with2( Func const& func, OutputIter result, InputIter from_begin, InputIter from_end, InputIters... rest_iters )
+OutputIter zip_with2( InputIter from_begin, InputIter from_end, OutputIter d_first, Func const& func, InputIters... rest_iters )
 {
     for( auto from = from_begin;
          from!=from_end;
          ++from ){
-        *result = func( *from, (*rest_iters)... );
-        // apply ++ operator to all elements of expansion pack
-        {
-            auto dummy = {(++rest_iters)...};
-            (void)dummy; // to avoid warning
-        }
-        ++result;
+        *d_first = func( *from, (*rest_iters++)... );
+        ++d_first;
     }
-    return result;
+    return d_first;
 }
 
 }
