@@ -26,7 +26,7 @@ void put(){}
 template < class... Args >
 void put( Args &&... args )
 {
-    for( auto const& arg : {args...} ){
+    for( auto && arg : {args...} ){
         std::cout << arg << std::endl;
     }
 }
