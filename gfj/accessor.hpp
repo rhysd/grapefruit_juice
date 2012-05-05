@@ -3,14 +3,14 @@
 
 // setter と getter を設定できる変数
 //
-//     using namespace lindapp;
+//     using namespace gfj;
 //     accessor<int, access::getter> m_hoge; // this variable has getter only.
 //     accessor<double, access::setter> m_foo; // this variable has setter only.
 //     accessor<Klass, access::getter, access::setter> m_bar // this variable has both getter and setter.
 //
 // TODO: クラス内では value に直接アクセスできるようにする
 
-namespace lindapp{
+namespace gfj{
 
     enum struct access{ getter = 0, setter };
 

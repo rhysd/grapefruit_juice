@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-namespace lindapp{
+namespace gfj{
 
 template< class Container >
 void print_cs( Container const& container )

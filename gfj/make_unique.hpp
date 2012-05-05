@@ -5,7 +5,7 @@
 
 #include <memory>
 
-namespace lindapp {
+namespace gfj{
 
     template<class T>
     inline std::unique_ptr<T> make_unique()

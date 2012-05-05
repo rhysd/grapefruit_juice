@@ -4,7 +4,7 @@
 #include <cstddef>
 #include <type_traits>
 
-namespace lindapp{
+namespace gfj{
 
 template< std::size_t N, class Func, class... Args >
 void times(Func func, Args... args)

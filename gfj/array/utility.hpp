@@ -10,7 +10,7 @@
 #include <type_traits>
 #include "../index_tuple.hpp"
 
-namespace lindapp {
+namespace grj{
 
     // make_array: element type is common type of args
     template <class T, class Array>
@@ -111,6 +111,6 @@ namespace lindapp {
     }
     */
 
-} // namespace lindapp
+} // namespace gfj
 
 #endif // LINDAPP_ARRAY_UTILITY_HPP__

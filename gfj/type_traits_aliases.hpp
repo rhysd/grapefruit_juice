@@ -3,7 +3,7 @@
 
 #include <type_traits>
 
-namespace lindapp{
+namespace gfj{
     template <class T>
     using remove_cv = typename std::remove_cv<T>::type;
 

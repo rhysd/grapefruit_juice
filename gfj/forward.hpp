@@ -4,7 +4,7 @@
 // std::forward の2つめのシグネチャを delete したバージョン
 // 間違ったキャストが起きないように．
 
-namespace lindapp{
+namespace gfj{
 
     template <class T>
     constexpr T &&forward( typename remove_reference<T>::type &t) noexcept

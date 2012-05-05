@@ -3,7 +3,7 @@
 
 #include <cstddef>
 
-namespace lindapp{
+namespace gfj{
 
     template< std::size_t... Indices >
     struct index_tuple{};

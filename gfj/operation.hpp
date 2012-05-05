@@ -4,7 +4,7 @@
 #include <functional>
 #include <algorithm>
 
-namespace lindapp {
+namespace gfj{
 
 template< class Iterator,
 class Comp = std::less<typename Iterator::value_type>,

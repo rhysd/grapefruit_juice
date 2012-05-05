@@ -5,7 +5,7 @@
 // #include <bits/range_access.h>
 #include <algorithm>
 
-namespace lindapp{
+namespace gfj{
 
     template<typename T, std::size_t N>
         struct array
