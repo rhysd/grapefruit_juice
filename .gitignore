@@ -1,5 +1,5 @@
 *.swp
 a.out
-tmp.cpp
-hoge.cpp
+tmp.*
+hoge.*
 *.gch
