@@ -24,7 +24,7 @@ void print_cs( Container const& head, Containers const& ... rest)
 void put(){}
 
 template < class... Args >
-void put( Args &&... args )
+void puts( Args &&... args )
 {
     for( auto && arg : {args...} ){
         std::cout << arg << std::endl;
