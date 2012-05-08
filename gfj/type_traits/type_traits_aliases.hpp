@@ -4,6 +4,10 @@
 #include <type_traits>
 
 namespace gfj{
+
+    template <class T>
+    using eval = typename T::type;
+
     template <class T>
     using remove_cv = typename std::remove_cv<T>::type;
 
