@@ -1,4 +1,4 @@
-#DESCRIPTION
+#Grapefruit Juice C++ Library
 
 My tiny cpp files to use generally.
 
@@ -6,7 +6,7 @@ This requires the latest version gcc.
 
 #What is gfj?
 
-gfj is abbreviation of Grape Fruit Juice, which is one of my favorite fruits.
+gfj is an abbreviation of GrapeFruit Juice which I love the most in fruits.
 
 #LICENSE
 
