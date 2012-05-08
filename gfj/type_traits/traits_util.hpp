@@ -1,6 +1,8 @@
 #if !defined LINDAPP_TRAITS_UTIL_HPP_INCLUDED__
 #define LINDAPP_TRAITS_UTIL_HPP_INCLUDED__
 
+#include <type_traits>
+
 namespace gfj{
 
     template <class T>
