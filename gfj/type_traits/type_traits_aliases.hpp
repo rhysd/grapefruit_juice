@@ -6,9 +6,6 @@
 namespace gfj{
 
     template <class T>
-    using eval = typename T::type;
-
-    template <class T>
     using remove_cv = typename std::remove_cv<T>::type;
 
     template <class T>
@@ -64,6 +61,9 @@ namespace gfj{
 
     template <class F, class... Args >
     using result_of = typename std::result_of<F(Args...)>::type;
+
+    template <class T, T v>
+    using integral_constant = typename std::integral_constant<T, v>::type;
 }
 
 #endif // LINDAPP_TYPE_TRAITS_ALIASES_HPP_INCLUDED__
