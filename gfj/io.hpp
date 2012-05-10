@@ -21,7 +21,10 @@ void print_cs( Container const& head, Containers const& ... rest)
     print_cs( rest... );
 }
 
-void put(){}
+void puts()
+{
+    std::cout << std::endl;
+}
 
 template < class... Args >
 void puts( Args &&... args )

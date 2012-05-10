@@ -56,7 +56,7 @@ namespace gfj{
     template <std::size_t Len, std::size_t Align>
     using aligned_storage = typename std::aligned_storage<Len, Align>::type;
 
-    /* aligned_union is not implemented in std... */
+    /* aligned_union is not implemented in std... (gcc-4.7.0)*/
     // template <std::size_t Len, class... Types>
     // using aligned_union = typename std::aligned_union<Len Types...>::type;
 
