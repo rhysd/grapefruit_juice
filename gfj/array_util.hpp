@@ -8,7 +8,7 @@
 
 #include <array>
 #include <type_traits>
-#include "../index_tuple.hpp"
+#include "index_tuple.hpp"
 
 namespace gfj{
 
