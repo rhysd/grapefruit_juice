@@ -22,6 +22,9 @@ namespace gfj{
     struct index_range< Start, Last, index_tuple<Indices...>, false >
              : index_range<Start+1, Last, index_tuple<Indices..., Start>>
     {};
+
+    template < std::size_t Start, std::size_t Last >
+    using idx_range = typename index_range< Start, Last >::type;
 }
 
 #endif // LINDAPP_INDEX_TUPLE_HPP__
