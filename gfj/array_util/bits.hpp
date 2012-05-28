@@ -7,8 +7,9 @@
 
 namespace gfj{
 
-    // operator[] や data() は constexpr 化されていないので苦肉の策．
+    // constexpr 化されていないので苦肉の策．
     // constexpr に対応次第消す
+
     template< class T, std::size_t N >
     inline constexpr T const& at(std::array<T, N> const& arr, std::size_t pos)
     {
