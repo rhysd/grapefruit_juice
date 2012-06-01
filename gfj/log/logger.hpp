@@ -10,13 +10,13 @@ namespace gfj{
 
 template <class Func>
 class logger{
-    Func gen;
+    Func writer;
     std::size_t count;
     std::string const file;
 public:
 
-    logger(Func const& gen, std::string const& name = "log.txt")
-        : gen(gen), count(0), file(name)
+    logger(Func const& writer, std::string const& name = "log.txt")
+        : writer(writer), count(0), file(name)
     {
         reset_file();
     }
@@ -25,7 +25,7 @@ public:
     void record(Args &&... args)
     {
         using namespace boost::posix_time;
-        auto text = gen(std::forward<Args>(args)...);
+        auto text = writer(std::forward<Args>(args)...);
 
         std::ofstream ofs(file, std::ios_base::out | std::ios_base::app);
         ofs << "\n*** beginning of log " << count << " *** at "
@@ -42,9 +42,9 @@ public:
         ofs.close();
     }
 
-    void new_log_generator(Func const& new_gen)
+    void new_log_generator(Func const& new_writer)
     {
-        gen = new_gen;
+        writer = new_writer;
     }
 
     virtual ~logger(){}
