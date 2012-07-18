@@ -74,6 +74,13 @@ namespace gfj{
     template <class Function>
     using target_t = typename Function::target_type;
 
+    template <class T, class... Rest>
+    struct first_of_{
+        typedef T type;
+    };
+
+    template < class... Types >
+    using first_of = typename first_of_<Types...>::type;
 }
 
 #endif // LINDAPP_TRAITS_UTIL_HPP_INCLUDED__

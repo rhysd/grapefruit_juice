@@ -58,5 +58,18 @@ constexpr R between( T && value, U && floor, V && ceiling )
                              );
 }
 
+template< class Result = std::vector<std::string> >
+Result args(int const argc, char const * const * const argv)
+{
+    Result result;
+    for(int i=0; i<argc; ++i){
+        result.push_back(argv[i]);
+    }
+    return result;
+}
+
+#define RETURN(...) -> decltype(__VA_ARGS__) { return (__VA_ARGS__); }
+#define static_assert_(expr) static_assert(expr, #expr)
+
 }
 #endif // LINDAPP_UTILITY_HPP__
