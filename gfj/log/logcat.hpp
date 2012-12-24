@@ -1,5 +1,5 @@
-#if !defined LINDAPP_LOGCAT_HPP_INCLUDED__
-#define LINDAPP_LOGCAT_HPP_INCLUDED__
+#if !defined LINDAPP_LOGCAT_HPP_INCLUDED
+#define LINDAPP_LOGCAT_HPP_INCLUDED
 
 #include <iostream>
 
@@ -58,4 +58,4 @@ logcat<E, W, V, O> make_logcat(E && e = []{return "";},
 
 } // gfj
 
-#endif // LINDAPP_LOGCAT_HPP_INCLUDED__
+#endif // LINDAPP_LOGCAT_HPP_INCLUDED

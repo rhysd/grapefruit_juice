@@ -1,5 +1,5 @@
-#if !defined LINDAPP_COMPARE_HPP_INCLUDED__
-#define LINDAPP_COMPARE_HPP_INCLUDED__
+#if !defined LINDAPP_COMPARE_HPP_INCLUDED
+#define LINDAPP_COMPARE_HPP_INCLUDED
 
 #include <array>
 #include <cstddef>
@@ -22,4 +22,4 @@ inline constexpr bool equal(std::array<T,N> && arr1, std::array<U,N> && arr2)
 }
 
 }
-#endif // LINDAPP_COMPARE_HPP_INCLUDED__
+#endif // LINDAPP_COMPARE_HPP_INCLUDED

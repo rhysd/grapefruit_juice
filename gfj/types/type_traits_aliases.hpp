@@ -1,5 +1,5 @@
-#ifndef LINDAPP_TYPE_TRAITS_ALIASES_HPP_INCLUDED__
-#define LINDAPP_TYPE_TRAITS_ALIASES_HPP_INCLUDED__
+#ifndef LINDAPP_TYPE_TRAITS_ALIASES_HPP_INCLUDED
+#define LINDAPP_TYPE_TRAITS_ALIASES_HPP_INCLUDED
 
 #include <type_traits>
 
@@ -79,4 +79,4 @@ namespace gfj{
     using result_of = typename std::result_of<F(Args...)>::type;
 }
 
-#endif // LINDAPP_TYPE_TRAITS_ALIASES_HPP_INCLUDED__
+#endif // LINDAPP_TYPE_TRAITS_ALIASES_HPP_INCLUDED

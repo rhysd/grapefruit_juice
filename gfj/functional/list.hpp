@@ -1,5 +1,5 @@
-#ifndef LINDA_PP_CONSTEXPR_ARRAY_HPP__
-#define LINDA_PP_CONSTEXPR_ARRAY_HPP__
+#ifndef LINDA_PP_CONSTEXPR_ARRAY_HPP
+#define LINDA_PP_CONSTEXPR_ARRAY_HPP
 
 // #include <bits/stl_algobase.h>
 // #include <bits/range_access.h>
@@ -120,4 +120,4 @@ namespace gfj{
 
 }
 
-#endif // LINDA_PP_CONSTEXPR_ARRAY_HPP__
+#endif // LINDA_PP_CONSTEXPR_ARRAY_HPP

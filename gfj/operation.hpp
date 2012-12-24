@@ -1,5 +1,5 @@
-#if !defined LINDAPP_OPERATION_HPP_INCLUDED__
-#define LINDAPP_OPERATION_HPP_INCLUDED__
+#if !defined LINDAPP_OPERATION_HPP_INCLUDED
+#define LINDAPP_OPERATION_HPP_INCLUDED
 
 #include <functional>
 #include <algorithm>
@@ -48,4 +48,4 @@ OutputIter zip_with2( InputIter from_begin, InputIter from_end, OutputIter d_fir
 }
 
 }
-#endif // LINDAPP_OPERATION_HPP_INCLUDED__
+#endif // LINDAPP_OPERATION_HPP_INCLUDED

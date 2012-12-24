@@ -1,5 +1,5 @@
-#if !defined LINDAPP_ENABLE_IF_HPP_INCLUDED__
-#define LINDAPP_ENABLE_IF_HPP_INCLUDED__
+#if !defined LINDAPP_ENABLE_IF_HPP_INCLUDED
+#define LINDAPP_ENABLE_IF_HPP_INCLUDED
 
 #include "type_traits_aliases.hpp"
 
@@ -14,4 +14,4 @@ template< bool B, class T, class U >
 using if_ = gfj::conditional< B, T, U>;
 
 }
-#endif // LINDAPP_ENABLE_IF_HPP_INCLUDED__
+#endif // LINDAPP_ENABLE_IF_HPP_INCLUDED

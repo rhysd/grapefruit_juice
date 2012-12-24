@@ -1,5 +1,5 @@
-#ifndef LINDAPP_LOGGER_HPP_INCLUDED__
-#define LINDAPP_LOGGER_HPP_INCLUDED__
+#ifndef LINDAPP_LOGGER_HPP_INCLUDED
+#define LINDAPP_LOGGER_HPP_INCLUDED
 
 #include <string>
 #include <cstddef>
@@ -57,4 +57,4 @@ logger<Func> make_logger(Func const& f, std::string const& name = "log.txt")
 }
 
 }
-#endif // LINDAPP_LOGGER_HPP_INCLUDED__
+#endif // LINDAPP_LOGGER_HPP_INCLUDED

@@ -1,5 +1,5 @@
-#ifndef __LINDAPP_SINGLETON_HPP__
-#define __LINDAPP_SINGLETON_HPP__
+#ifndef LINDAPP_SINGLETON_HPP
+#define LINDAPP_SINGLETON_HPP
 
 // 指定した型のシングルトンオブジェクトを生成．
 // 型Tに対して，singleton<T> はプログラム中に1つしかないことを保証する．
@@ -29,4 +29,4 @@ namespace gfj{
 
 }
 
-#endif // __LINDAPP_SINGLETON_HPP__
+#endif // LINDAPP_SINGLETON_HPP

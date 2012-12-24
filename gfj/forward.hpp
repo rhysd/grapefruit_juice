@@ -1,5 +1,5 @@
-#ifndef __LINDAPP_FORWARD_HPP__
-#define __LINDAPP_FORWARD_HPP__
+#ifndef LINDAPP_FORWARD_HPP
+#define LINDAPP_FORWARD_HPP
 
 // std::forward の2つめのシグネチャを delete したバージョン
 // 間違ったキャストが起きないように．
@@ -16,4 +16,4 @@ namespace gfj{
     T &&forward( typename remove_reference<T>::type &&) = delete;
 }
 
-#endif // __LINDAPP_FORWARD_HPP__
+#endif // LINDAPP_FORWARD_HPP

@@ -1,5 +1,5 @@
-#if !defined LINDAPP_BITS_HPP_INCLUDED__
-#define LINDAPP_BITS_HPP_INCLUDED__
+#if !defined LINDAPP_BITS_HPP_INCLUDED
+#define LINDAPP_BITS_HPP_INCLUDED
 
 #include <array>
 #include <type_traits>
@@ -17,4 +17,4 @@ namespace gfj{
     }
 
 }
-#endif // LINDAPP_BITS_HPP_INCLUDED__
+#endif // LINDAPP_BITS_HPP_INCLUDED

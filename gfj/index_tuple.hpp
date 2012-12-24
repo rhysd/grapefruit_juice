@@ -1,5 +1,5 @@
-#ifndef LINDAPP_INDEX_TUPLE_HPP__
-#define LINDAPP_INDEX_TUPLE_HPP__
+#ifndef LINDAPP_INDEX_TUPLE_HPP
+#define LINDAPP_INDEX_TUPLE_HPP
 
 #include <cstddef>
 
@@ -30,4 +30,4 @@ namespace gfj{
 
 }
 
-#endif // LINDAPP_INDEX_TUPLE_HPP__
+#endif // LINDAPP_INDEX_TUPLE_HPP

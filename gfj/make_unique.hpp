@@ -1,5 +1,5 @@
-#ifndef __LINDA_PP_MAKE_UNIQUE_HPP__
-#define __LINDA_PP_MAKE_UNIQUE_HPP__
+#ifndef LINDA_PP_MAKE_UNIQUE_HPP
+#define LINDA_PP_MAKE_UNIQUE_HPP
 
 // std::unique_ptr を生成
 
@@ -20,4 +20,4 @@ namespace gfj{
     }
 
 }
-#endif // __LINDA_PP_MAKE_UNIQUE_HPP__
+#endif // LINDA_PP_MAKE_UNIQUE_HPP

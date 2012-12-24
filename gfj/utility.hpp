@@ -1,5 +1,5 @@
-#ifndef LINDAPP_UTILITY_HPP__
-#define LINDAPP_UTILITY_HPP__
+#ifndef LINDAPP_UTILITY_HPP
+#define LINDAPP_UTILITY_HPP
 
 #include <cstddef>
 #include <type_traits>
@@ -68,8 +68,29 @@ Result args(int const argc, char const * const * const argv)
     return result;
 }
 
-#define RETURN(...) -> decltype(__VA_ARGS__) { return (__VA_ARGS__); }
+#define GFRUIT_RETURN(...) -> decltype(__VA_ARGS__) { return (__VA_ARGS__); }
 #define static_assert_(expr) static_assert(expr, #expr)
 
+tempalte <class T>
+class in{
+    T const& v_;
+    bool const rv_;
+public:
+    in(T const& l) : v_(l), rv_(false){}
+    in(T&& r) : v_(r), rv_(true){}
+
+    bool lvalue() const { return !rv_; }
+    bool rvalue() const { return rv_; }
+
+    operator T const&() const { return v_; }
+    T const& get() const { return v_; }
+    T&& rget() const { return std::move(const_cast<T&>(v_)); }
+
+    T move() const
+    {
+        return rv_ ? rget() : v_;
+    }
+};
+
 }
-#endif // LINDAPP_UTILITY_HPP__
+#endif // LINDAPP_UTILITY_HPP

@@ -1,5 +1,5 @@
-#if !defined LINDAPP_MODIFY_HPP_INCLUDED__
-#define LINDAPP_MODIFY_HPP_INCLUDED__
+#if !defined LINDAPP_MODIFY_HPP_INCLUDED
+#define LINDAPP_MODIFY_HPP_INCLUDED
 
 #include <array>
 #include "bits.hpp"
@@ -49,4 +49,4 @@ namespace gfj{
     }
     */
 }
-#endif // LINDAPP_MODIFY_HPP_INCLUDED__
+#endif // LINDAPP_MODIFY_HPP_INCLUDED

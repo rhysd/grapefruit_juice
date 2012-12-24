@@ -1,5 +1,5 @@
-#if !defined LINDAPP_IO_HPP_INCLUDED__
-#define LINDAPP_IO_HPP_INCLUDED__
+#if !defined LINDAPP_IO_HPP_INCLUDED
+#define LINDAPP_IO_HPP_INCLUDED
 
 #include <iostream>
 
@@ -35,4 +35,4 @@ void puts( Args &&... args )
 }
 
 }
-#endif // LINDAPP_IO_HPP_INCLUDED__
+#endif // LINDAPP_IO_HPP_INCLUDED

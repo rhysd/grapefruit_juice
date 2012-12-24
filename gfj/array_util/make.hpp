@@ -1,5 +1,5 @@
-#if !defined LINDAPP_MAKE_HPP_INCLUDED__
-#define LINDAPP_MAKE_HPP_INCLUDED__
+#if !defined LINDAPP_MAKE_HPP_INCLUDED
+#define LINDAPP_MAKE_HPP_INCLUDED
 
 #include <array>
 #include <type_traits>
@@ -16,7 +16,7 @@ namespace gfj{
     }
 
     template <
-                class... Args, 
+                class... Args,
                 class ElemType = typename std::decay<typename std::common_type<Args...>::type>::type
              >
     inline constexpr std::array<ElemType, sizeof...(Args)> make_array(Args &&... args)
@@ -89,4 +89,4 @@ namespace gfj{
     }
 
 }
-#endif // LINDAPP_MAKE_HPP_INCLUDED__
+#endif // LINDAPP_MAKE_HPP_INCLUDED

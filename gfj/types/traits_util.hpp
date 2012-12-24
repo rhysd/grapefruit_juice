@@ -1,5 +1,5 @@
-#if !defined LINDAPP_TRAITS_UTIL_HPP_INCLUDED__
-#define LINDAPP_TRAITS_UTIL_HPP_INCLUDED__
+#if !defined LINDAPP_TRAITS_UTIL_HPP_INCLUDED
+#define LINDAPP_TRAITS_UTIL_HPP_INCLUDED
 
 #include <type_traits>
 
@@ -83,4 +83,4 @@ namespace gfj{
     using first_of = typename first_of_<Types...>::type;
 }
 
-#endif // LINDAPP_TRAITS_UTIL_HPP_INCLUDED__
+#endif // LINDAPP_TRAITS_UTIL_HPP_INCLUDED

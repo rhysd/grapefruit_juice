@@ -1,5 +1,5 @@
-#ifndef __ACCESSOR_HPP__
-#define __ACCESSOR_HPP__
+#ifndef ACCESSORHPP
+#define ACCESSORHPP
 
 // setter と getter を設定できる変数
 //
@@ -61,4 +61,4 @@ namespace gfj{
 
 }
 
-#endif // __ACCESSOR_HPP__
+#endif // ACCESSORHPP
