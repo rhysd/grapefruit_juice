@@ -9,7 +9,7 @@
 namespace gfj{
 
     // make_array: element type is common type of args
-    template <class T, class Array>
+    template <class T>
     inline constexpr std::array<T, 0> make_array()
     {
         return std::array<T, 0>{{}};
@@ -42,34 +42,6 @@ namespace gfj{
         -> std::array< ElemType, sizeof...(Args) >
     {
         return {{ std::forward<ElemType>(f(args))... }};
-    }
-
-    namespace detail{
-        template <class T, std::size_t N, std::size_t... Indices>
-        constexpr std::array<T, N> to_array_impl( T const(& native_array)[N], gfj::index_tuple<Indices...>)
-        {
-            return {{ native_array[Indices]... }};
-        }
-    }
-
-    template <class T, std::size_t N>
-    constexpr std::array<T, N> to_array( T const(& native_array)[N])
-    {
-        return detail::to_array_impl( native_array, typename gfj::index_range<0, N>::type() );
-    }
-
-    namespace detail{
-        template< class T, std::size_t N, std::size_t... Indices >
-        inline constexpr std::array<T, N> taken_impl( gfj::index_tuple<Indices...> )
-        {
-            return {{ Indices... }};
-        }
-    }
-
-    template<class T, size_t N>
-    inline constexpr std::array<T, N> taken()
-    {
-        return detail::taken_impl<T, N>( gfj::idx_range<0, N>() );
     }
 
     namespace detail{
