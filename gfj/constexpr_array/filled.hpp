@@ -11,14 +11,14 @@ namespace gfj {
         template<std::size_t N, class T, std::size_t... Indices>
         inline constexpr std::array<T, N> filled_array_impl(T && item, gfj::index_tuple<Indices...>)
         {
-            return {{ std::forward<T>([&](std::size_t){ return item; }(Indices))... }};
+            return {{ std::forward<T>((static_cast<void>(Indices), item))... }};
         }
     } // namespace detail
 
     template<std::size_t N, class T>
     inline constexpr std::array<T, N> filled_array(T && item)
     {
-        return detail::filled_array_impl( std::forward<T>(item), gfj::idx_range<0, N>() );
+        return detail::filled_array_impl<N>( std::forward<T>(item), gfj::idx_range<0, N>() );
     }
 } // namespace gfj
 
