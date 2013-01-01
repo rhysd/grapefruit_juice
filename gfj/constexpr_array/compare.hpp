@@ -7,25 +7,29 @@
 namespace gfj{
 
 namespace detail{
-    extern void* enabler;
 
-    template< std::size_t I, class T, class U, std::size_t N, typename std::enable_if<(I>0)>::type *& = enabler >
-    constexpr bool equal_impl(std::array<T,N> arr1, std::array<U,N> arr2)
-    {
-        return (std::get<I>(arr1) == std::get<I>(arr2)) && equal_impl<I-1>(arr1, arr2);
-    }
+    template< std::size_t I, class T, class U, std::size_t N >
+    struct equal_impl{
+        constexpr bool operator()(std::array<T, N> arr1, std::array<U, N> arr2)
+        {
+            return (std::get<I>(arr1) == std::get<I>(arr2)) && equal_impl<I-1, T, U, N>()(arr1, arr2);
+        }
+    };
 
-    template< std::size_t I, class T, class U, std::size_t N, typename std::enable_if<I==0>::type *& = enabler >
-    constexpr bool equal_impl(std::array<T,N> arr1, std::array<U,N> arr2)
-    {
-        return (std::get<I>(arr1) == std::get<I>(arr2));
-    }
+    template<class T, class U, std::size_t N>
+    struct equal_impl<0, T, U, N>{
+        constexpr bool operator()(std::array<T, N> arr1, std::array<U, N> arr2)
+        {
+            return (std::get<0>(arr1) == std::get<0>(arr2));
+        }
+    };
+
 }
 
 template< class T, class U, std::size_t N >
 inline constexpr bool equal(std::array<T,N> arr1, std::array<U,N> arr2)
 {
-    return detail::equal_impl<N-1>(arr1, arr2);
+    return detail::equal_impl<N-1, T, U, N>()(arr1, arr2);
 }
 
 }
