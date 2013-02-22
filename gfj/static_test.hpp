@@ -6,7 +6,7 @@ namespace gfj{
     template<class T, T Value, T Min, T Max>
     inline constexpr void assert_out_of_range()
     {
-        static_assert(Min<=Value&&Value<=Max, "lindapp::assert_out_of_range: failed");
+        static_assert(Min<=Value&&Value<=Max, "gfj::assert_out_of_range: failed");
         return;
     }
 
