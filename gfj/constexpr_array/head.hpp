@@ -7,7 +7,7 @@
 namespace gfj {
 
 template<class T, std::size_t N>
-inline constexpr T head(std::array<T, N> && a)
+inline constexpr T head(std::array<T, N> const& a)
 {
     return std::get<0>(a);
 }

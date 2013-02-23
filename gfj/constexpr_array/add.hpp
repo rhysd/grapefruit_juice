@@ -10,19 +10,17 @@ namespace gfj{
 namespace detail{
 
     template< class T, std::size_t N, std::size_t... Indices>
-    inline constexpr std::array<T, N+1> add_impl( std::array<T, N> && a, gfj::index_tuple<Indices...>, T && item )
+    inline constexpr std::array<T, N+1> add_impl( std::array<T, N> const& a, T && item, gfj::index_tuple<Indices...>)
     {
-        return {{ std::forward<T>(std::get<Indices>(a))..., std::forward<T>(item) }};
+        return {{ std::get<Indices>(a)..., std::forward<T>(item) }};
     }
 
 }
 
 template<class T, std::size_t N>
-inline constexpr std::array<T, N+1> add( std::array<T, N> && a, T && item )
+inline constexpr std::array<T, N+1> add( std::array<T, N> const& a, T && item )
 {
-    return detail::add_impl(std::forward<std::array<T, N>>(a),
-                            std::forward<T>(item),
-                            gfj::idx_range<0, N>());
+    return detail::add_impl(a, std::forward<T>(item), gfj::idx_range<0, N>());
 }
 
 }

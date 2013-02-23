@@ -9,9 +9,9 @@
 namespace gfj {
 
     template< class T, std::size_t N >
-    inline constexpr std::array<T, N-1> tail(std::array<T, N> a)
+    inline constexpr std::array<T, N-1> tail(std::array<T, N> const& a)
     {
-        return detail::partial_array(a, gfj::idx_range<0, N-1>());
+        return detail::partial_array(a, gfj::idx_range<1, N>());
     }
 
 } // namespace gfj

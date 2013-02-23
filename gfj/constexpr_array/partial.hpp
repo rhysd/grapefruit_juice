@@ -9,7 +9,7 @@
 namespace gfj {
 
     template< std::size_t First, std::size_t Last, class T, std::size_t N >
-    inline constexpr std::array<T, N-1> partial(std::array<T, N> && a)
+    inline constexpr std::array<T, N-1> partial(std::array<T, N> const& a)
     {
         return detail::partial_array(a, gfj::idx_range<First, Last>());
     }

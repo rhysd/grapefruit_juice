@@ -9,19 +9,18 @@ namespace gfj {
 
     namespace detail {
 
-        template<class T, std::size_t N, class Func, std::size_t... Indices>
-        inline constexpr std::array<T, N> map_impl( Func f, std::array<T, N> && a, gfj::index_tuple<Indices...> )
+        template<class T, std::size_t N, class Func, std::size_t... Indices, class R = typename std::result_of<Func(T)>::type>
+        inline constexpr std::array<R, N> map_impl( Func f, std::array<T, N> const& a, gfj::index_tuple<Indices...> )
         {
-            return {{ std::forward<T>( f( std::get<Indices>(a) ) )... }};
+            return {{ std::forward<R>( f( std::get<Indices>(a) ) )... }};
         }
     } // namespace detail
 
-    template<class T, std::size_t N, class Func>
-    inline constexpr std::array<T, N> map( Func f, std::array<T, N> && a )
+    template<class T, std::size_t N, class Func, class R = typename std::result_of<Func(T)>::type>
+    inline constexpr std::array<R, N> map( Func f, std::array<T, N> const& a )
     {
-        return detail::map_impl( f, std::forward<T>(a), gfj::idx_range<0, N>() );
+        return detail::map_impl( f, a, gfj::idx_range<0, N>() );
     }
-
 } // namespace gfj
 
 #endif    // GFJ_ARRAY_MAP_HPP_INCLUDED

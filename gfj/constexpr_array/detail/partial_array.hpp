@@ -8,9 +8,9 @@ namespace gfj {
     namespace detail {
 
         template< class T, std::size_t N, std::size_t... Indices >
-        std::array<T, N-1> partial_array(std::array<T, N> && a, gfj::index_tuple<Indices...>)
+        inline constexpr std::array<T, N-1> partial_array(std::array<T, N> const& a, gfj::index_tuple<Indices...>)
         {
-            return {{ std::forward<T>(std::get<Indices>(a))... }};
+            return {{ std::get<Indices>(a)... }};
         }
 
     } // namespace detail
