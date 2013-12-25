@@ -22,12 +22,12 @@
 namespace gfj {
 
 template<class T>
-constexpr T is_constant_expression_impl(T x) throw(int)
+constexpr T is_constexpr_impl(T x) throw(int)
 {
   return x;
 }
 
-#define IS_CONSTANT_EXPRESSION(EXPR) noexcept(is_constant_expression_impl(EXPR))
+#define IS_CONSTEXPR(EXPR) noexcept(gfj::is_constexpr_impl(EXPR))
 
 template<bool B, class T>
 constexpr T assert_constant_expression_impl(T x)
@@ -37,7 +37,7 @@ constexpr T assert_constant_expression_impl(T x)
 }
 
 #define ASSERT_CONSTANT_EXPRESSION(EXPR) \
-assert_constant_expression_impl<IS_CONSTANT_EXPRESSION(EXPR)>(EXPR)
+assert_constant_expression_impl<IS_CONSTANTEXPR(EXPR)>(EXPR)
 
 } // namespace gfj
 
