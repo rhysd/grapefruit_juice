@@ -18,6 +18,8 @@
 #include <boost/phoenix/bind.hpp>
 #include <boost/phoenix/stl.hpp>
 #include <boost/phoenix/operator.hpp>
+#include <boost/spirit/include/support_line_pos_iterator.hpp>
+#include <boost/spirit/include/phoenix_object.hpp>
 
 #include <boost/range/numeric.hpp>
 
@@ -29,6 +31,8 @@ namespace gfj {
 namespace json {
 
 struct json_value { // {{{
+    using string_type = std::string;
+    using null_type = std::nullptr_t;
     using array_type = std::vector<json_value>;
     using object_type = std::unordered_map<std::string, json_value>;
     using value_type = boost::variant<
@@ -171,45 +175,58 @@ namespace qi = boost::spirit::qi;
 namespace ascii = boost::spirit::ascii;
 namespace phx = boost::phoenix;
 
-template<class Iterator>
-struct json_grammar : qi::grammar<Iterator, json_value(), ascii::space_type> {
+template<class Iterator, class JsonValue = json_value>
+struct json_grammar : qi::grammar<Iterator, JsonValue(), ascii::space_type> {
     template<class Value>
     using rule = qi::rule<Iterator, Value, ascii::space_type>;
 
-    rule<json_value()>                         value_;
-    rule<json_value::object_type()>            object_;
-    rule<json_value::array_type()>             array_;
-    rule<std::string()>                        string_;
-    rule<std::nullptr_t()>                     null_;
-    rule<std::pair<std::string, json_value>()> key_value_;
+    rule<JsonValue()>                                   value_;
+    rule<typename JsonValue::object_type()>             object_;
+    rule<typename JsonValue::array_type()>              array_;
+    rule<typename JsonValue::string_type()>             string_;
+    rule<typename JsonValue::null_type()>               null_;
+    rule<std::pair<
+            typename JsonValue::object_type::key_type,
+            typename JsonValue::object_type::mapped_type
+        > ()> key_value_;
 
     json_grammar() : json_grammar::base_type(value_)
     {
-        value_ = (qi::double_ | qi::bool_ | array_ | object_ | string_ | null_)[phx::bind(&json_value::value, qi::_val) = qi::_1];
-        array_ = '[' >> value_[phx::push_back(qi::_val, qi::_1)] % ',' >> ']';
-        object_ = '{' >> key_value_[phx::insert(qi::_val, qi::_1)] % ',' >> '}';
-        key_value_ = (string_ >> ':' >> value_)
+        value_ = (qi::double_ | qi::bool_ | array_ | object_ | string_ | null_)[phx::bind(&JsonValue::value, qi::_val) = qi::_1];
+        array_ = '[' > value_[phx::push_back(qi::_val, qi::_1)] % ',' > ']';
+        object_ = '{' > key_value_[phx::insert(qi::_val, qi::_1)] % ',' > '}';
+        key_value_ = (string_ > ':' > value_)
                         [ qi::_val = phx::bind( [](auto const& s, auto const& j){ return std::make_pair(s, j); }, qi::_1, qi::_2 ) ];
-        string_ = qi::lexeme['"' >> *(
+        string_ = qi::lexeme['"' > *(
                     (qi::char_ - '"' - '\\')[qi::_val += qi::_1] |
-                    ('\\' >> ( qi::lit('"') [qi::_val += '"']
-                             | qi::lit('\\')[qi::_val += '\\']
-                             | qi::lit('/') [qi::_val += '/']
-                             | qi::lit('b') [qi::_val += '\b']
-                             | qi::lit('f') [qi::_val += '\f']
-                             | qi::lit('n') [qi::_val += '\n']
-                             | qi::lit('r') [qi::_val += '\r']
-                             | qi::lit('t') [qi::_val += '\t']
-                             | qi::lit('u') [qi::_val += "\\u"]
-                             | qi::char_    [qi::_val += qi::_1]
+                    ('\\' > ( qi::lit('"') [qi::_val += '"']
+                            | qi::lit('\\')[qi::_val += '\\']
+                            | qi::lit('/') [qi::_val += '/']
+                            | qi::lit('b') [qi::_val += '\b']
+                            | qi::lit('f') [qi::_val += '\f']
+                            | qi::lit('n') [qi::_val += '\n']
+                            | qi::lit('r') [qi::_val += '\r']
+                            | qi::lit('t') [qi::_val += '\t']
+                            | qi::lit('u') [qi::_val += "\\u"]          // XXX parse utf-8 characters properly
+                            | qi::char_    [qi::_val += qi::_1]
                         )
                     )
-                  ) >> '"'];
+                  ) > '"'];
         null_ = qi::lit("null")[qi::_val = nullptr];
+
+        qi::on_error<qi::fail>
+        (
+            value_,
+            std::cerr
+                << phx::val( "Error! Expecting " )
+                << qi::_4                          // what failed?
+                << phx::val( " here: \"" )
+                << phx::construct<std::string>( qi::_3, qi::_2 )    // iterators to error-pos, end
+                << phx::val( "\"" )
+                << std::endl
+        );
     }
 };
 // }}}
-
-} // namespace json
 } // namespace gfj
 #endif    // GRAPEFRUITJUICE_JSON_PARSER_CPP_INCLUDED
