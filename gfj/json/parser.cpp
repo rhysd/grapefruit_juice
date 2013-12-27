@@ -36,10 +36,10 @@ struct json_value { // {{{
     using array_type = std::vector<json_value>;
     using object_type = std::unordered_map<std::string, json_value>;
     using value_type = boost::variant<
-                           std::nullptr_t
+                           null_type
                            , bool
                            , double
-                           , std::string
+                           , string_type
                            , boost::recursive_wrapper<array_type>
                            , boost::recursive_wrapper<object_type>
                        >;
@@ -105,7 +105,7 @@ struct json_value { // {{{
         }
     }
 
-    boost::any get() const
+    boost::any get_any() const
     {
         return value;
     }
