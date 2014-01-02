@@ -40,11 +40,11 @@ namespace detail {
 
     template<class T, class Func, class RetType = decltype(std::declval<Func>()(std::declval<T>()))>
     struct apply_impl{
-        template<class Variant>
-        static boost::optional<RetType> call(Variant const& v, Func const& f)
+        template<class Optional>
+        static boost::optional<RetType> call(Optional const& o, Func const& f)
         {
-            if(auto opt = get<T>(v)) {
-                return f(*opt);
+            if(o) {
+                return f(*o);
             } else {
                 return boost::none;
             }
@@ -53,11 +53,11 @@ namespace detail {
 
     template<class T, class Func>
     struct apply_impl<T, Func, void>{
-        template<class Variant>
-        static bool call(Variant const& v, Func const& f)
+        template<class Optional>
+        static bool call(Optional const& o, Func const& f)
         {
-            if(auto opt = get<T>(v)) {
-                f(*opt);
+            if(o) {
+                f(*o);
                 return true;
             } else {
                 return false;
@@ -69,9 +69,9 @@ namespace detail {
 
 template<class T, class Func, class Variant>
 inline auto apply(Variant const& v, Func const& f)
-    -> decltype(apply_impl<T, Func>::call(v, f))
+    -> decltype(detail::apply_impl<T, Func>::call(std::declval<boost::optional<T>>(), f))
 {
-    return apply_impl<T, Func>::call(v, f);
+    return detail::apply_impl<T, Func>::call(get<T>(v), f);
 }
 
 } // namespace variant
