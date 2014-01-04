@@ -1,6 +1,7 @@
 #if !defined GRAPEFRUIT_JUICE_VARIANT_HELPER_HPP_INCLUDED
 #define      GRAPEFRUIT_JUICE_VARIANT_HELPER_HPP_INCLUDED
 
+#include <boost/variant/variant.hpp>
 #include <boost/variant/static_visitor.hpp>
 #include <boost/variant/apply_visitor.hpp>
 #include <boost/optional.hpp>
@@ -30,8 +31,8 @@ namespace detail {
 
 } // namespace detail
 
-template<class T, class Variant>
-inline boost::optional<T> get(Variant const& v)
+template<class T, class... Args>
+inline boost::optional<T> get(boost::variant<Args...> const& v)
 {
     return boost::apply_visitor(detail::static_getter<T>{}, v);
 }
