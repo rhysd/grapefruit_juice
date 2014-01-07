@@ -75,6 +75,30 @@ inline auto apply(Variant const& v, Func const& f)
     return detail::apply_impl<T, Func>::call(get<T>(v), f);
 }
 
+namespace detail {
+
+    template<class T>
+    struct type_checker : boost::static_visitor<bool> {
+        bool operator()(T) const
+        {
+            return true;
+        }
+
+        template<class U>
+        bool operator()(U) const
+        {
+            return false;
+        }
+    };
+
+} // namespace detail
+
+template<class T, class... Args>
+inline bool has_value_of(boost::variant<Args...> const& v)
+{
+    return boost::apply_visitor(detail::type_checker<T>{}, v);
+}
+
 } // namespace variant
 } // namespace gfj
 
