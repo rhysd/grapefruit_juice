@@ -1,14 +1,15 @@
-#Grapefruit Juice C++ Library
+Grapefruit Juice C++ Library
+============================
 
-My tiny cpp files to use generally.
+It's just a scrapyard of my C++ codes.
 
-This requires the latest version gcc.
+This requires a compiler which supports the latest version of C++.
 
-#What is gfj?
+## What is `gfj`?
 
-gfj is an abbreviation of GrapeFruit Juice which I love the most in fruits.
+`gfj` is an abbreviation of GrapeFruit Juice which I love the most in fruits.
 
-#LICENSE
+## LICENSE
 
 {{{ Boost Software License
 
